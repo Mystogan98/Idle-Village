@@ -36,7 +36,7 @@ public class BuildingScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (upgradable != null)
+		if (upgradable != null && NextLevel != null)
 		{
 			if(RessourceCheck())
 			{
