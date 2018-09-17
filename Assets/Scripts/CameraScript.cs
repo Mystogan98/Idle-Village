@@ -37,17 +37,17 @@ public class CameraScript : MonoBehaviour {
 			// Déplacement caméra
 			if(Input.GetKey(KeyCode.Mouse2))
 			{
-				Vector3 move = MouseScript.GetMouseMovement();
+				Vector3 move = new Vector3(Input.GetAxis("Mouse Y"),0,-Input.GetAxis("Mouse X")); //MouseScript.GetMouseMovement();
 				// On change l'ordre des valeurs car les valeurs de la souris sont en 2D
-				move.z = -move.x;
-				move.x = move.y;
-				move.y = 0;
+				// move.z = -move.x;
+				// move.x = move.y;
+				// move.y = 0;
 				transform.position += move * moveSpeed * Time.deltaTime;
 			}
 			// Rotation caméra
 			if(Input.GetKey(KeyCode.Mouse1))
 			{
-				Debug.Log(localCamera.ScreenToWorldPoint(new Vector3(Screen.width/2,Screen.height/2,localCamera.nearClipPlane)));
+				//Debug.Log(localCamera.ScreenToWorldPoint(new Vector3(Screen.width/2,Screen.height/2,localCamera.nearClipPlane)));
 				transform.RotateAround(localCamera.ScreenToWorldPoint(new Vector3(Screen.width/2,Screen.height/2,localCamera.nearClipPlane)),Vector3.up,-MouseScript.GetMouseMovement().x * Time.deltaTime * RotationSpeed);
 				//transform.RotateAround(Vector3.zero,Vector3.up,-MouseScript.GetMouseMovement().x * Time.deltaTime * RotationSpeed);
 			}
