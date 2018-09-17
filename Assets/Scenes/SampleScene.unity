@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667564, g: 0.48427147, b: 0.56452364, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2417,21 +2417,21 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3506d82937b312c4e9fc70f7f1950572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   zoomSpeed: 2
   moveSpeed: 5
-  RotationSpeed: 1
+  RotationSpeed: 90
 --- !u!114 &534669907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f56041a2596ad964991549cb83ceb708, type: 3}
   m_Name: 
@@ -8175,7 +8175,6 @@ GameObject:
   - component: {fileID: 1865993616}
   - component: {fileID: 1865993615}
   - component: {fileID: 1865993614}
-  - component: {fileID: 1865993617}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -8239,17 +8238,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1865993617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1865993613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 593ac8cd7d8cf304d8a2551ce8b205df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1869709428 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4137909302882428, guid: af15a5908b3c6bb4a99ace9f4aa5a97c,

@@ -5,12 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour {
 
-	public float zoomSpeed = 2, moveSpeed = 1, RotationSpeed = 1;
+	public float zoomSpeed = 2, moveSpeed = 1, RotationSpeed = 10;
 
 	private Vector3 basePos;
 	private Quaternion baseRot;
 	private float baseFoV;
 	private Camera localCamera;
+	private float rotx, roty;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,9 @@ public class CameraScript : MonoBehaviour {
 		baseFoV = localCamera.fieldOfView;
 		basePos = transform.position;
 		baseRot = transform.rotation;
+
+		rotx = transform.rotation.x;
+		roty = transform.rotation.y;
 	}
 	
 	// Update is called once per frame
@@ -37,20 +41,29 @@ public class CameraScript : MonoBehaviour {
 			// Déplacement caméra
 			if(Input.GetKey(KeyCode.Mouse2))
 			{
-				Vector3 move = new Vector3(Input.GetAxis("Mouse Y"),0,-Input.GetAxis("Mouse X")); //MouseScript.GetMouseMovement();
-				// On change l'ordre des valeurs car les valeurs de la souris sont en 2D
-				// move.z = -move.x;
-				// move.x = move.y;
-				// move.y = 0;
+				Debug.Log(Input.GetAxis("Mouse X") + " / " + Input.GetAxis("Mouse Y"));
+
+				Vector3 move = new Vector3(Input.GetAxis("Mouse Y") * Mathf.Sin(transform.rotation.y),0,-Input.GetAxis("Mouse X") * Mathf.Cos(transform.rotation.x));
 				transform.position += move * moveSpeed * Time.deltaTime;
 			}
 			// Rotation caméra
 			if(Input.GetKey(KeyCode.Mouse1))
 			{
-				//Debug.Log(localCamera.ScreenToWorldPoint(new Vector3(Screen.width/2,Screen.height/2,localCamera.nearClipPlane)));
-				transform.RotateAround(localCamera.ScreenToWorldPoint(new Vector3(Screen.width/2,Screen.height/2,localCamera.nearClipPlane)),Vector3.up,-MouseScript.GetMouseMovement().x * Time.deltaTime * RotationSpeed);
-				//transform.RotateAround(Vector3.zero,Vector3.up,-MouseScript.GetMouseMovement().x * Time.deltaTime * RotationSpeed);
-			}
+
+
+				// Vector3 rot = transform.rotation.eulerAngles;
+				// rot.x += Input.GetAxis("Mouse X") * RotationSpeed * Time.deltaTime;
+				// rot.y = Mathf.Clamp(transform.rotation.y + (Input.GetAxis("Mouse Y") * RotationSpeed * Time.deltaTime), -90, 90);
+				// transform.rotation = Quaternion.Euler(rot.x,rot.y,rot.z);
+
+				//transform.localRotation = Quaternion.AngleAxis(transform.rotation.x + (Input.GetAxis("Mouse X") * RotationSpeed * Time.deltaTime), Vector3.up);
+				//transform.localRotation *= Quaternion.AngleAxis(Mathf.Clamp(transform.rotation.y + (Input.GetAxis("Mouse Y") * RotationSpeed * Time.deltaTime), -90, 90), Vector3.left);
+
+				rotx += (Input.GetAxis("Mouse X") * RotationSpeed * Time.deltaTime);
+				roty += (Input.GetAxis("Mouse Y") * RotationSpeed * Time.deltaTime);
+				transform.rotation = Quaternion.Euler(rotx, roty, 0);
+
+				//transform.RotateAround(localCamera.ScreenToWorldPoint(new Vector3(Screen.width/2,Screen.height/2,localCamera.nearClipPlane)),Vector3.up,-Input.GetAxis("Mouse X") * Time.deltaTime * RotationSpeed);
 		}
 		// Zoom caméra
 		if(Input.GetAxis("Mouse ScrollWheel") < 0)
