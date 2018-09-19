@@ -62,7 +62,6 @@ public class BuildingScript : MonoBehaviour {
 				return;
 			if (!superScript.UpgradeModifier())
 				return;
-			// le UpgradeModifier doit prendre en compte la modification de villagescript
 			RessourceDown();
 			NextLevel.gameObject.SetActive(true);
 			superScript.publicBuilding = NextLevel;
